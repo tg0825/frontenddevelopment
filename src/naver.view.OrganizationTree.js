@@ -30,6 +30,7 @@ naver.view.OrganizationTree.prototype = {
 
     /**
      * 현재 선택된 노드에 새 조직을 생성한다.
+     * 생성 후 이름을 변경할 수 있게 편집 모드로 전환한다.
      */
     createNode: function () {
         var welOrganization = this.welTreeSet.find('a.selected');
@@ -45,6 +46,7 @@ naver.view.OrganizationTree.prototype = {
             welOrganization.addClass('has_child opened_child');
             welChildrenList.addClass('opened');
             welButton.html('폴더 닫기');
+            oSelf.renameNode(oNewOrganization.nId);
         }).fail(function (error) {
             alert(error.responseText);
         });
@@ -60,6 +62,15 @@ naver.view.OrganizationTree.prototype = {
         this.welTreeSet.on('click', 'input.edit_name', $.proxy(this._onClickInputName, this));
         this.welTreeSet.on('keyup', 'input.edit_name', $.proxy(this._onKeyupInoutName, this));
         this.welTreeSet.on('focusout', 'input.edit_name', $.proxy(this._onFocusoutInputName, this));
+        this.welTitleSet.on('click', 'button', $.proxy(this._onClickAddOrganization, this));
+    },
+
+    /**
+     * 조직 추가 버튼 click 이벤트 리스너
+     * @private
+     */
+    _onClickAddOrganization: function () {
+        this.createNode();
     },
 
     /**
@@ -76,7 +87,9 @@ naver.view.OrganizationTree.prototype = {
      * @private
      */
     _onKeyupInoutName: function (oEvent) {
-        if (oEvent.keyCode === 13) {
+        var nEnterKey = 13;
+
+        if (oEvent.keyCode === nEnterKey) {
             $(oEvent.currentTarget).blur();
         }
     },
