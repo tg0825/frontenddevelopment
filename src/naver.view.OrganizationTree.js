@@ -15,6 +15,28 @@ naver.view.OrganizationTree = function (sSelector, oCollection) {
 
 naver.view.OrganizationTree.prototype = {
     /**
+     * 현재 선택된 노드에 새 조직을 생성한다.
+     */
+    createNode: function () {
+        var welOrganization = this.welTreeSet.find('a.selected');
+        var nId = welOrganization.data('organization-id');
+        var welChildrenList = this.getElementListById(nId);
+        var welButton = welOrganization.siblings('button');
+        var oSelf = this;
+
+        this.oCollection.create(nId).done(function (oNewOrganization) {
+            welChildrenList.append(oSelf._tmplPlainNode({
+                organization: oNewOrganization
+            }));
+            welOrganization.addClass('has_child opened_child');
+            welChildrenList.addClass('opened');
+            welButton.html('폴더 닫기');
+        }).fail(function (error) {
+            alert(error.responseText);
+        });
+    },
+
+    /**
      * 이벤트를 바인드한다.
      * @private
      */
