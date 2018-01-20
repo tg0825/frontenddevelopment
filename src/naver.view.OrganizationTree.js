@@ -137,6 +137,28 @@ naver.view.OrganizationTree.prototype = {
     },
 
     /**
+     * 조직을 삭제한다.
+     * @param {number} nId
+     */
+    removeNode: function (nId) {
+        var oOrganization = this.oCollection.find(nId);
+        var oParent = this.oCollection.find(oOrganization.nParentId);
+        var welOrganization = this.getElementNodeById(oParent.nId);
+        var welParent = this.getElementNodeById(oParent.nId);
+
+        this.oCollection.remove(nId).done(function () {
+            welOrganization.parent('li').remove();
+
+            if (!oParent.hasChildren()) {
+                welParent.removeClass('has_child opened_child')
+                    .siblings('ul').removeClass('opened');
+            }
+        }).fail(function (oError) {
+            alert(oError.responseText);
+        });
+    },
+
+    /**
      * 조직 요소를 찾아서 반환한다.
      * @param {number} nId
      * @returns {jQuery}
