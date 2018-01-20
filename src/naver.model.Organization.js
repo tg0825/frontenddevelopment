@@ -11,7 +11,7 @@
  * @param {OrganizationDataSet} htDataSet
  * @constructor
  */
-naver.model.Organizations = function (htDataSet) {
+naver.model.Organization = function (htDataSet) {
     this.nId = htDataSet.id;
     this.sName = htDataSet.name;
     this.nParentId = htDataSet.parentId;
@@ -20,7 +20,7 @@ naver.model.Organizations = function (htDataSet) {
     this._aChildren = [];
 };
 
-naver.model.Organizations.prototype = {
+naver.model.Organization.prototype = {
     /**
     * 하위 조직 리스트를 반환한다.
     * @returns {Array.<naver.model.Organization>}
@@ -51,5 +51,13 @@ naver.model.Organizations.prototype = {
      */
     isRoot: function () {
         return this.nParentId === -1;
-    }
+    },
+
+    /**
+     * 하위 조직을 삭제한다.
+     * @param {naver.model.Organization} oOrganization
+     */
+    removeChild: function (oOrganization) {
+        this._aChildren = _.without(this._aChildren, oOrganization);
+    },
 };

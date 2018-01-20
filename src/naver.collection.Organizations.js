@@ -10,6 +10,54 @@ naver.collection.Organizations = function (sApiUrl) {
 };
 
 naver.collection.Organizations.prototype = {
+    /**
+     * 최상위 회사 조직 ID
+     * @type {number}
+     */
+    COMPANY_NODE: 0,
+
+    /**
+     * 최상위 조직미지정 ID
+     */
+    UNSPECIFIED_NODE: 1,
+    
+    /**
+     * 조직을 삭제한다.
+     * @param {number} nId
+     * @returns {jQuery.Deferred}
+     */
+    remove: function (nId) {
+        var oSelf = this;
+
+        return $.ajax({
+            url: this._sApiUrl + '/' + nId,
+            type: 'DELETE'
+        }).then(function (htRemoved) {
+            var oOrganization = oSelf.find(htRemoved.id);
+            var oParent = oSelf.find(oOrganization.nParentId);
+
+            oParent.removeChild(oOrganization);
+        });
+    },
+
+    /**
+     * 조직의 이름을 변경한다.
+     * @param {number} nId
+     * @param {string} sName
+     */
+    rename: function (nId, sName) {
+        var oSelf = this;
+
+        return $.ajax({
+            url: this._sApiUrl + '/' + nId + '?name=' + sName,
+            type: 'PUT',
+        }).then(function (htDataSet) {
+            var oOrganization = oSelf.find(htDataSet.id);
+            oOrganization.sName = htDataSet.name;
+
+            return oOrganization;
+        });
+    },
 
     /**
      * 지정한 조직의 새로운 하위 조직을 생성한다.
@@ -23,11 +71,12 @@ naver.collection.Organizations.prototype = {
             url: this._sApiUrl + '/' + nId,
             type: 'post',
         }).then(function (htDataSet) {
-            var oOrganization = new naver.model.Organizations(htDataSet);
+            var oOrganization = new naver.model.Organization(htDataSet);
             var oParent = oSelf.find(oOrganization.nParentId);
-            
-            console.log(htDataSet);
-        })
+
+            oParent.appendChild(oOrganization);
+            return oOrganization;
+        });
     },
 
     /**
@@ -38,7 +87,7 @@ naver.collection.Organizations.prototype = {
         var oSelf = this;
 
         _.each(this._aComposite, function (oOrganization) {
-            oSelf._traverse(oOrganization, fnCallback);
+            oSelf._traverse(oOrganization, undefined, fnCallback);
         });
     },
 
@@ -62,7 +111,7 @@ naver.collection.Organizations.prototype = {
     /**
      * 전달받은 조직의 하위 조직을 재귀적으로 순회한다.
      * @param {naver.model.Organization} oOrganization
-     * @param {number|undefiend} nTargetId
+     * @param {number|undefined} nTargetId
      * @param {function?} fnCallback
      * @returns {null|naver.model.Organization}
      * @private
@@ -116,7 +165,7 @@ naver.collection.Organizations.prototype = {
     _createOrganizations: function (aListData) {
         var aOrganizations = [];
         _.each(aListData, function (htDataSet) {
-            aOrganizations.push(new naver.model.Organizations(htDataSet));
+            aOrganizations.push(new naver.model.Organization(htDataSet));
         });
 
         return aOrganizations;

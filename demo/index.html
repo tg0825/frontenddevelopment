@@ -16,167 +16,7 @@
             </button>
         </div>
     </div>
-    <div class="tree_set">
-        <div class="wrap_list">
-            <h4 class="company">
-                <a class="link has_child opened_child" href="#">
-                    <span>회사</span>
-                </a>
-                <button>폴더 닫기</button>
-            </h4>
-            <ul class="list opened">
-                <li class="node">
-                    <a class="link" href="#">
-                        <span class="name">경영관리부</span>
-                        <span class="edit">
-                            <label>
-                                <span>이름 변경</span>
-                                <input class="edit_name" value="경영관리부" size="12" type="text"/>
-                            </label>
-                        </span>
-                    </a>
-                    <button>폴더 열기</button>
-                    <ul></ul>
-                </li>
-                <li class="node">
-                    <a class="link" href="#">
-                        <span class="name">기획개발부</span>
-                        <span class="edit">
-                            <label>
-                                <span>이름 변경</span>
-                                <input class="edit_name" value="기획개발부" size="12" type="text"/>
-                            </label>
-                        </span>
-                    </a>
-                    <button>폴더 열기</button>
-                    <ul></ul>
-                </li>
-                <li class="node">
-                    <a class="link selected" href="#">
-                        <span class="name">기술연구소</span>
-                        <span class="edit">
-                            <label>
-                                <span>이름 변경</span>
-                                <input class="edit_name" value="기술연구소" size="12" type="text"/>
-                            </label>
-                        </span>
-                    </a>
-                    <button>폴더 열기</button>
-                    <ul></ul>
-                </li>
-                <li class="node">
-                    <a class="link has_child opened_child" href="#">
-                        <span class="name">개발본부</span>
-                        <span class="edit">
-                            <label>
-                                <span>이름 변경</span>
-                                <input class="edit_name" value="개발본부" size="12" type="text"/>
-                            </label>
-                        </span>
-                    </a>
-                    <button>폴더 열기</button>
-                    <ul class="opened">
-                        <li class="node">
-                            <a class="link" href="#">
-                                <span class="name">모바일개발팀</span>
-                                <span class="edit">
-                                    <label>
-                                        <span>이름 변경</span>
-                                        <input class="edit_name" value="모바일개발팀" size="12" type="text"/>
-                                    </label>
-                                </span>
-                            </a>
-                            <button>폴더 열기</button>
-                            <ul></ul>
-                        </li>
-                        <li class="node">
-                            <a class="link editing" href="#">
-                                <span class="name">웹개발팀</span>
-                                <span class="edit">
-                                    <label>
-                                        <span>이름 변경</span>
-                                        <input class="edit_name" value="웹개발팀" size="12" type="text"/>
-                                    </label>
-                                </span>
-                            </a>
-                            <button>폴더 열기</button>
-                            <ul></ul>
-                        </li>
-                        <li class="node">
-                            <a class="link" href="#">
-                                <span class="name">플랫폼개발팀</span>
-                                <span class="edit">
-                                    <label>
-                                        <span>이름 변경</span>
-                                        <input class="edit_name" value="플랫폼개발팀" size="12" type="text"/>
-                                    </label>
-                                </span>
-                            </a>
-                            <button>폴더 열기</button>
-                            <ul></ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="node">
-                    <a class="link" href="#">
-                        <span class="name">경영관리부</span>
-                        <span class="edit">
-                            <label>
-                                <span>이름 변경</span>
-                                <input class="edit_name" value="경영관리부" size="12" type="text"/>
-                            </label>
-                        </span>
-                    </a>
-                    <button>폴더 열기</button>
-                    <ul></ul>
-                </li>
-                <li class="node">
-                    <a class="link" href="#">
-                        <span class="name">디자인센터</span>
-                        <span class="edit">
-                            <label>
-                                <span>이름 변경</span>
-                                <input class="edit_name" value="디자인센터" size="12" type="text"/>
-                            </label>
-                        </span>
-                    </a>
-                    <button>폴더 열기</button>
-                    <ul></ul>
-                </li>
-                <li class="node">
-                    <a class="link" href="#">
-                        <span class="name">마케팅사업부</span>
-                        <span class="edit">
-                            <label>
-                                <span>이름 변경</span>
-                                <input class="edit_name" value="마케팅사업부" size="12" type="text"/>
-                            </label>
-                        </span>
-                    </a>
-                    <button>폴더 열기</button>
-                    <ul></ul>
-                </li>
-                <li class="node">
-                    <a class="link" href="#">
-                        <span class="name">플랫폼개발팀</span>
-                        <span class="edit">
-                            <label>
-                                <span>이름 변경</span>
-                                <input class="edit_name" value="플랫폼개발팀" size="12" type="text"/>
-                            </label>
-                        </span>
-                    </a>
-                    <button>폴더 열기</button>
-                    <ul></ul>
-                </li>
-            </ul>
-            <h4 class="unspecified">
-                <a class="link" href="#">
-                    <span>조직미지정</span>
-                </a>
-            </h4>
-        </div>
-    </div>
+    <div class="tree_set"></div>
     <div class="context_menu" style="top:265px;left:100px;">
         <ul>
             <li><button type="button" class="change"><span>이름바꾸기</span></button></li>
@@ -184,6 +24,46 @@
         </ul>
     </div>
 </div>
+
+<script type="text/template" id="tmpl_root_node">
+    <h4 class="company">
+    <% if(company.hasChildren()) { %>
+    <a class="link selected has_child opened_child" data-organization-id="<%= company.nId %>" href="#">
+    <% }else{ %>
+    <a class="link selected" data-organization-id="<%= company.nId %>" href="#">
+        <% } %>
+        <span><%= company.sName %></span>
+    </a>
+    <button>폴더 닫기</button>
+    </h4>
+    <ul class="list opened"></ul>
+    <h4 class="unspecified">
+        <a class="link" data-organization-id="<%= unspecified.nId %>" href="#">
+            <span><%= unspecified.sName %></span>
+        </a>
+    </h4>
+</script>
+
+<script type="text/template" id="tmpl_plain_node">
+    <li class="node">
+        <% if(organization.hasChildren()) { %>
+        <a class="link has_child" data-organization-id="<%= organization.nId %>" href="#">
+        <% }else{ %>
+        <a class="link" data-organization-id="<%= organization.nId %>" href="#">
+            <% } %>
+            <span class="name"><%= organization.sName %></span>
+        <span class="edit">
+            <label>
+                <span>이름 변경</span>
+                <input class="edit_name" value="<%= organization.sName %>" size="12" type="text"/>
+            </label>
+        </span>
+        </a>
+        <button>폴더 열기</button>
+        <ul></ul>
+    </li>
+</script>
+
 <script src="/node_modules/sinon/pkg/sinon.js"></script>
 <script src="/node_modules/jquery/dist/jquery.js"></script>
 <script src="/node_modules/underscore/underscore.js"></script>
@@ -191,8 +71,11 @@
 <script src="../src/namespace.js"></script>
 <script src="../src/naver.model.Organization.js"></script>
 <script src="../src/naver.collection.Organizations.js"></script>
+<script src="../src/naver.view.OrganizationTree.js"></script>
 <script>
     var oOrganizations = new naver.collection.Organizations('/api/organizations');
+    var oOrganizationTree = new naver.view.OrganizationTree('.snb_organization', oOrganizations);
+
 </script>
 </body>
 </html>
