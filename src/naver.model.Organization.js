@@ -43,5 +43,13 @@ naver.model.Organizations.prototype = {
     */
     hasChildren: function () {
         return this._aChildren.length > 0;
+    },
+
+    /**
+     * 최상위 조직인지 판단한다.
+     * @returns {boolean}
+     */
+    isRoot: function () {
+        return this.nParentId === -1;
     }
 };

@@ -20,7 +20,7 @@ naver.collection.Organizations.prototype = {
         var oSelf = this;
 
         _.each(aOrganizations, function (oOrganization) {
-            if (oOrganization.nParentId === -1) {
+            if (oOrganization.isRoot()) {
                 oSelf._aComposite.push(oOrganization);
             } else {
                 oParent = _.findWhere(aOrganizations, {nId: oOrganization.nParentId});
@@ -54,12 +54,6 @@ naver.collection.Organizations.prototype = {
         $.ajax({
             url: this._sApiUrl,
             async: false,
-        // }).then(function(htListData) {
-        //     var aOrganizations = oSelf._createOrganizations(htListData)
-        //     oSelf._composeOrganizations(aOrganizations);
-        //     console.log(oSelf._aComposite);
-        // });
-
         }).then($.proxy(this._createOrganizations, this))
         .then($.proxy(this._composeOrganizations, this));
     }
