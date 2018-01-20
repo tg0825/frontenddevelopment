@@ -1,0 +1,27 @@
+{
+  "name": "frontenddevelopment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tg0825/frontenddevelopment.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tg0825/frontenddevelopment/issues"
+  },
+  "homepage": "https://github.com/tg0825/frontenddevelopment#readme",
+  "dependencies": {
+    "jquery": "^1.12.4",
+    "normalize.css": "^7.0.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "sinon": "^4.1.6"
+  }
+}
