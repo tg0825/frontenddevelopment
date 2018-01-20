@@ -15,6 +15,20 @@ naver.view.OrganizationTree = function (sSelector, oCollection) {
 
 naver.view.OrganizationTree.prototype = {
     /**
+     * ID에 해당하는 조직의 이름을 변경할 수 있게 상태를 변경한다.
+     * @param {number} nId
+     */
+    renameNode: function (nId) {
+        var welOrganization = this.getElementNodeById(nId);
+        var oOrganization = this.oCollection.find(nId);
+
+        if (!oOrganization.isRoot()) {
+            welOrganization.addClass('editing');
+            welOrganization.find('input').focus();
+        }
+    },
+
+    /**
      * 현재 선택된 노드에 새 조직을 생성한다.
      */
     createNode: function () {
@@ -43,6 +57,48 @@ naver.view.OrganizationTree.prototype = {
     _bindEvents: function () {
         this.welTreeSet.on('click', 'a.link', $.proxy(this._onClickSelectOrganization, this));
         this.welTreeSet.on('click', 'a.link', $.proxy(this._onClickOpenCloseOrganization, this));
+        this.welTreeSet.on('click', 'input.edit_name', $.proxy(this._onClickInputName, this));
+        this.welTreeSet.on('keyup', 'input.edit_name', $.proxy(this._onKeyupInoutName, this));
+        this.welTreeSet.on('focusout', 'input.edit_name', $.proxy(this._onFocusoutInputName, this));
+    },
+
+    /**
+     * 이름 입력란 click 이벤트 리스너
+     * @private
+     */
+    _onClickInputName: function (oEvent) {
+        oEvent.stopPropagation();
+    },
+
+    /**
+     * 이름 입력한 keyup 이벤트 리스너
+     * @param {KeyboardEvent} oEvent
+     * @private
+     */
+    _onKeyupInoutName: function (oEvent) {
+        if (oEvent.keyCode === 13) {
+            $(oEvent.currentTarget).blur();
+        }
+    },
+
+    /**
+     * 이름 입력한 focusout 이벤트 리스너
+     * @param {MouseEvent} oEvent
+     * @private
+     */
+    _onFocusoutInputName: function (oEvent) {
+        var welInputName = $(oEvent.currentTarget);
+        var welOrganization = welInputName.parents('a.link');
+        var sNewName = welInputName.val();
+        var nId = welOrganization.data('organization-id');
+
+        welOrganization.removeClass('editing');
+
+        this.oCollection.rename(nId, sNewName).done(function () {
+            welOrganization.find('span.name').html(sNewName);
+        }).fail(function (oError) {
+            alert(oError.responseText);
+        });
     },
 
     /**
