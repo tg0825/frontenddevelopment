@@ -73,10 +73,13 @@
 <script src="../src/naver.collection.Organizations.js"></script>
 <script src="../src/naver.view.OrganizationTree.js"></script>
 <script src="../src/naver.view.OrganizationTreeContextMenu.js"></script>
+<script src="../src/organizationTree.js"></script>
 <script>
-    var oOrganizations = new naver.collection.Organizations('/api/organizations');
-    var oOrganizationTree = new naver.view.OrganizationTree('.snb_organization', oOrganizations);
-    var oOrganizationTreeContextMenu = new naver.view.OrganizationTreeContextMenu(oOrganizationTree);
+    var oORganization = organizationTree({
+        sApiUrl: '/api/organizations',
+        sSelector: '.snb_organization',
+        useContextMenu: true
+    });
 </script>
 </body>
 </html>
