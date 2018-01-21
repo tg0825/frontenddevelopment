@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="tree_set"></div>
-    <div class="context_menu" style="top:265px;left:100px;">
+    <div class="context_menu" style="display: none">
         <ul>
             <li><button type="button" class="change"><span>이름바꾸기</span></button></li>
             <li><button type="button" class="remove"><span>삭제</span></button></li>
@@ -72,9 +72,11 @@
 <script src="../src/naver.model.Organization.js"></script>
 <script src="../src/naver.collection.Organizations.js"></script>
 <script src="../src/naver.view.OrganizationTree.js"></script>
+<script src="../src/naver.view.OrganizationTreeContextMenu.js"></script>
 <script>
     var oOrganizations = new naver.collection.Organizations('/api/organizations');
     var oOrganizationTree = new naver.view.OrganizationTree('.snb_organization', oOrganizations);
+    var oOrganizationTreeContextMenu = new naver.view.OrganizationTreeContextMenu(oOrganizationTree);
 </script>
 </body>
 </html>

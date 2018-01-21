@@ -143,7 +143,7 @@ naver.view.OrganizationTree.prototype = {
     removeNode: function (nId) {
         var oOrganization = this.oCollection.find(nId);
         var oParent = this.oCollection.find(oOrganization.nParentId);
-        var welOrganization = this.getElementNodeById(oParent.nId);
+        var welOrganization = this.getElementNodeById(nId);
         var welParent = this.getElementNodeById(oParent.nId);
 
         this.oCollection.remove(nId).done(function () {

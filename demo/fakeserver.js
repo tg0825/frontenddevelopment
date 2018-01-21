@@ -22,7 +22,8 @@
         {"id": 8, "name": "서비스부", "parentId": 0, "depth": 2},
         {"id": 9, "name": "모바일개발팀", "parentId": 5, "depth": 3},
         {"id": 10, "name": "웹개발팀", "parentId": 5, "depth": 3},
-        {"id": 11, "name": "플랫폼개발팀", "parentId": 5, "depth": 3}
+        {"id": 11, "name": "플랫폼개발팀", "parentId": 5, "depth": 3},
+        {"id": 12, "name": "블라블라개발팀", "parentId": 2, "depth": 3}
     ];
 
     aErrorMessage = [
